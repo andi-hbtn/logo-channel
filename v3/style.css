@@ -1,0 +1,388 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at center, #0d1a33 0%, #000000 100%);
+    /* Deep space gradient */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    /* Prevent scrollbars from animation/dots */
+    position: relative;
+}
+
+/* Star background effect using pseudo-element */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Complex star field using multiple radial gradients */
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.1) 1px, transparent 1.5px),
+        radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.15) 1px, transparent 1.8px),
+        radial-gradient(circle at 40% 90%, rgba(255, 255, 255, 0.08) 0.8px, transparent 1.2px),
+        radial-gradient(circle at 70% 10%, rgba(255, 255, 255, 0.12) 1px, transparent 1.6px),
+        radial-gradient(circle at 25% 70%, rgba(255, 255, 255, 0.05) 0.7px, transparent 1.1px),
+        radial-gradient(circle at 55% 45%, rgba(255, 255, 255, 0.1) 1px, transparent 1.4px);
+    background-size: 150px 150px, 200px 200px, 100px 100px, 180px 180px, 120px 120px, 160px 160px;
+    animation: twinkling 30s infinite alternate;
+    /* Subtle twinkle effect */
+    pointer-events: none;
+    /* Allows clicks to pass through */
+    opacity: 0.7;
+    z-index: -1;
+    /* Ensure stars are behind everything */
+}
+
+@keyframes twinkling {
+    0% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
+
+.logo-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    perspective: 1000px;
+    /* Establishes a 3D perspective context */
+}
+
+.logo-wrapper {
+    position: relative;
+    width: 450px;
+    /* Overall size for the entire logo assembly */
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    /* Allows nested 3D transforms */
+}
+
+/* --- Core Logo Styles (Center Sphere) --- */
+.logo-center-ring {
+    width: 180px;
+    /* The main glossy sphere */
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 70% 80%, #57a1e0 0%, #29609c 60%, #1e4573 100%);
+    /* Glossy blue sphere */
+    border: 3px solid #f2e3a1;
+    /* Gold border */
+    box-shadow:
+        inset 0 0 30px rgba(255, 255, 255, 0.3),
+        /* Inner highlight */
+        inset 0 0 10px rgba(0, 0, 0, 0.5),
+        /* Inner shadow */
+        0 0 80px rgba(87, 161, 224, 0.8);
+    /* Outer blue glow */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+    /* Ensures it's correctly layered with the Saturn ring */
+}
+
+.logo-center-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    /* Subtle inner glow, blended with the sphere's gradient */
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.icon-code {
+    font-size: 60px;
+    font-weight: bold;
+    color: #83c6f0;
+    /* Lighter blue for icon */
+    line-height: 1;
+    margin-bottom: 5px;
+    text-shadow: 0 0 15px rgba(131, 198, 240, 0.8);
+    position: relative;
+    top: 5px;
+    /* Adjust vertical alignment */
+}
+
+.logo-text {
+    font-size: 1.1em;
+    font-weight: bold;
+    position: relative;
+    bottom: 5px;
+    /* Adjust vertical alignment */
+    text-align: center;
+    white-space: nowrap;
+    /* Keep "Script Beyond" on one line */
+}
+
+.script {
+    color: #83c6f0;
+    /* Lighter blue for "Script" */
+    text-shadow: 0 0 10px rgba(131, 198, 240, 0.6);
+}
+
+.beyond {
+    color: #f2e3a1;
+    /* Gold for "Beyond" */
+    text-shadow: 0 0 10px rgba(242, 227, 161, 0.6);
+}
+
+/* --- Saturn Ring Styles --- */
+.saturn-ring-wrapper {
+    position: absolute;
+    width: 320px;
+    /* Overall width of the ring system */
+    height: 320px;
+    /* Overall height for positioning */
+    transform-style: preserve-3d;
+    transform: rotateX(120deg);
+    /* Tilt the entire ring system for perspective */
+    /* animation: rotate-saturn-ring 30s linear infinite; */
+    /* Smooth, continuous rotation */
+    z-index: 8;
+    /* Position between logo-center-ring (z-index 9) and outer orbits (lower z-index) */
+}
+
+/* Pseudo-elements to create the multiple ring bands and depth */
+.saturn-ring-wrapper::before,
+.saturn-ring-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Center the pseudo-elements */
+    border-radius: 50%;
+    box-sizing: border-box;
+    /* Include padding and border in the element's total width and height */
+    box-shadow: 0 0 15px rgba(131, 198, 240, 0.6);
+    /* General soft glow */
+    opacity: 0.9;
+}
+
+/* Back part of the ring (appears behind the logo-center-ring) */
+.saturn-ring-wrapper::before {
+    width: 320px;
+    /* Outer width of the largest band */
+    height: 100px;
+    /* Creates the elliptical shape */
+    border: 3px solid rgba(131, 198, 240, 0.3);
+    /* Transparent light blue outer border */
+    background: linear-gradient(to right,
+            rgba(131, 198, 240, 0.05) 0%,
+            rgba(131, 198, 240, 0.1) 20%,
+            rgba(131, 198, 240, 0.3) 50%,
+            rgba(131, 198, 240, 0.1) 80%,
+            rgba(131, 198, 240, 0.05) 100%);
+    /* Fading transparent blue for inner texture */
+    z-index: 7;
+    /* Lower than logo-center-ring (z-index 9) */
+}
+
+/* Front part of the ring (appears in front of the logo-center-ring) */
+.saturn-ring-wrapper::after {
+    width: 250px;
+    height: 70px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    z-index: 10;
+    /* Higher than logo-center-ring (z-index 9) */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+    /* Stronger glow for the front ring */
+}
+
+@keyframes rotate-saturn-ring {
+    from {
+        transform: rotateX(75deg) rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateX(75deg) rotateZ(360deg);
+    }
+}
+
+/* --- Orbit Lines and Dots --- */
+.orbit {
+    position: absolute;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: rgba(69, 139, 230, 0.6);
+    /* Consistent blue for orbit lines */
+    border-width: 1px;
+    z-index: 5;
+    /* Below the Saturn ring system */
+}
+
+/* Orbit 1: Solid (Innermost actual orbit) */
+.orbit-solid-1 {
+    width: 220px;
+    height: 220px;
+    border-style: solid;
+    animation: rotate 15s linear infinite;
+}
+
+/* Orbit 2: Dotted */
+.orbit-dotted-1 {
+    width: 270px;
+    height: 270px;
+    border: 1px dotted #eece7f;
+    animation: rotate-reverse 18s linear infinite;
+}
+
+/* Orbit 3: Solid */
+.orbit-solid-2 {
+    width: 320px;
+    height: 320px;
+    border: 2px solid #5789d6;
+    animation: rotate 20s linear infinite;
+}
+
+/* Orbit 4: Dotted */
+.orbit-dotted-2 {
+    width: 370px;
+    height: 370px;
+    border: 1px dotted #eece7f;
+    border-width: 2px;
+    animation: rotate-reverse 22s linear infinite;
+}
+
+/* Orbit 5: Solid (Outermost) */
+.orbit-solid-3 {
+    width: 420px;
+    height: 420px;
+    border: 2px solid #5789d6;
+    animation: rotate 25s linear infinite;
+}
+
+/* Styles for the "planets" (dots) */
+.dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ffd700;
+    /* Gold color */
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+    /* Glow effect */
+}
+
+.dot-small {
+    width: 6px;
+    height: 6px;
+}
+
+/* Positioning for dots within each orbit (adjust these values for desired positions) */
+.orbit-solid-1 .dot:nth-child(1) {
+    top: 7%;
+    left: 21%;
+}
+
+.orbit-solid-1 .dot:nth-child(2) {
+    bottom: 11%;
+    right: 15%;
+}
+
+.orbit-dotted-1 .dot:nth-child(1) {
+    top: 11%;
+    left: 15%;
+}
+
+.orbit-dotted-1 .dot:nth-child(2) {
+    top: 16%;
+    right: 10%;
+}
+
+.orbit-dotted-1 .dot:nth-child(3) {
+    bottom: 7%;
+    left: 20%;
+}
+
+.orbit-dotted-1 .dot:nth-child(4) {
+    bottom: 11%;
+    right: 15%;
+}
+
+.orbit-solid-2 .dot:nth-child(1) {
+    top: 5%;
+    right: 25%;
+}
+
+.orbit-solid-2 .dot:nth-child(2) {
+    bottom: 10%;
+    left: 25%;
+}
+
+.orbit-solid-2 .dot:nth-child(3) {
+    top: 30%;
+    left: 10%;
+}
+
+.orbit-dotted-2 .dot:nth-child(1) {
+    top: 11%;
+    left: 16%;
+}
+
+.orbit-dotted-2 .dot:nth-child(2) {
+    top: 17%;
+    right: 10%;
+}
+
+.orbit-solid-3 .dot:nth-child(1) {
+    top: 12%;
+    left: 30%;
+}
+
+.orbit-solid-3 .dot:nth-child(2) {
+    bottom: 8%;
+    right: 20%;
+}
+
+.orbit-solid-3 .dot:nth-child(3) {
+    top: 40%;
+    right: 15%;
+}
+
+/* Animations for rotation */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}

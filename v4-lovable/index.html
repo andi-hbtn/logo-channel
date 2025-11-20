@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script Beyond - Orbital Animation</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <!-- Stars Background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Cloud and Sparkle Decorations -->
+    <div class="cloud cloud-top-right">☁</div>
+    <div class="sparkle">✦</div>
+
+    <!-- Orbital System -->
+    <div class="orbital-system">
+        <!-- Orbital Rings -->
+        <div class="orbit orbit-1"></div>
+        <div class="orbit orbit-2"></div>
+        <div class="orbit orbit-3"></div>
+        <div class="orbit orbit-4"></div>
+
+        <!-- Center Planet with Code Symbol -->
+        <div class="planet-container">
+            <div class="planet">
+                <div class="code-symbol">&lt;/&gt;</div>
+                <div class="saturn-ring"></div>
+            </div>
+            <div class="brand-text">
+                <span class="brand-script">Script</span>
+                <span class="brand-beyond">Beyond</span>
+                <span class="brand-registered">®</span>
+            </div>
+        </div>
+
+        <!-- Satellites (10 total) -->
+        <div class="satellite satellite-1 sat-yellow"></div>
+        <div class="satellite satellite-2 sat-yellow"></div>
+        <div class="satellite satellite-3 sat-yellow"></div>
+        <div class="satellite satellite-4 sat-yellow"></div>
+        <div class="satellite satellite-5 sat-yellow"></div>
+        <div class="satellite satellite-6 sat-yellow"></div>
+        <div class="satellite satellite-7 sat-cyan"></div>
+        <div class="satellite satellite-8 sat-cyan"></div>
+    </div>
+
+    <script>
+        // Generate random stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+
+</html>
